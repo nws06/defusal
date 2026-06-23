@@ -1,4 +1,4 @@
-public enum WireColour {
+/*public enum WireColour {
     red, 
     blue, 
     yellow, 
@@ -6,4 +6,4 @@ public enum WireColour {
     green, 
     black, 
     white
-}
+}*/

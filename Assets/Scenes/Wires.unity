@@ -439,8 +439,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3bb3626fb7a1144887bf17818f46a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireManager
-  _wire: {fileID: 7876261821898654968, guid: 38744c99be4ec1b4e807e7a512b08b8a, type: 3}
-  _wires: []
+  _wirePrefab: {fileID: 7876261821898654968, guid: 38744c99be4ec1b4e807e7a512b08b8a, type: 3}
+  _existingWires: []
+  _correctPosition: 0
 --- !u!4 &486797712
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,13 +1008,13 @@ MonoBehaviour:
     If the first and third wires are the same colour,
     cut the second wire
 
-    If any two wires are the same colour, cut the third
-    wire
+    If there are any white wires, cut the first wire
 
-    If the second wire is purple, cut the first wire
+    If
+    any two wires are the same colour, cut the third wire
 
-    If there are
-    no red wires, cut the second wire
+    If there are no red
+    wires, cut the second wire
 
     Otherwise, cut the last wire'
   m_isRightToLeft: 0
@@ -1435,7 +1436,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051767831}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

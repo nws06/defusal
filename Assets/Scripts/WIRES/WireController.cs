@@ -9,9 +9,7 @@ public class WireController : MonoBehaviour, IPointerDownHandler
     public static Sprite[] CutWireSprites;
 
     [field: SerializeField] public int Position { get; private set; }
-    [field: SerializeField] public WireColour Colour { get; private set; }
-
-    private static readonly int _numberOfColours = 7;
+    [field: SerializeField] public Color Colour { get; private set; }
 
     private SpriteRenderer _spriteRenderer;
     /// <summary>
@@ -33,12 +31,11 @@ public class WireController : MonoBehaviour, IPointerDownHandler
 
 
 
-    // Initialize the wire at a given position in the sequence (1-5)
-    public void Init(int position)
+    public void Init(int position, Color colour)
     {
-        Position = position;
+        Position = position; 
         RandomizeSprite();
-        RandomizeColour();
+        SetColour(colour);
     }
 
     void RandomizeSprite()
@@ -47,10 +44,10 @@ public class WireController : MonoBehaviour, IPointerDownHandler
         _spriteRenderer.sprite = WireSprites[_wireType];
     }
 
-    void RandomizeColour()
+    void SetColour(Color colour)
     {
-        Colour = (WireColour) Random.Range(0, WireManager.PossibleWireColours.Count);
-        _spriteRenderer.color = WireManager.PossibleWireColours[Colour];
+        Colour = colour;
+        _spriteRenderer.color = colour;
     }
 
 
