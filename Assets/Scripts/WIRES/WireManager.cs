@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class WireManager : MonoBehaviour
 {
+    public static event System.Action CorrectWireCut;
+    public static event System.Action IncorrectWireCut;
+
     private static readonly Color[] _possibleWireColours = new Color[]
     {
         Color.red, 
@@ -22,25 +25,22 @@ public class WireManager : MonoBehaviour
 
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            print("RESETTING ----------");
-
-            foreach (Transform child in transform)
-                Destroy(child.gameObject);
-
-            SpawnWires();
-        }
-    }
-
-
-
     void Awake()
     {
         WireController.WireCut += OnWireCut;
         SpawnWires();
+    }
+
+    public void StartNewLevel()
+    {
+        Reset();
+        SpawnWires();
+    }
+
+    void Reset()
+    {
+        foreach (Transform child in transform)
+                Destroy(child.gameObject);
     }
 
     void SpawnWires()
@@ -188,9 +188,11 @@ public class WireManager : MonoBehaviour
     void OnWireCut(WireController wire)
     {
         if (wire.Position == _correctPosition)
-            print("Correct");
+            CorrectWireCut?.Invoke();
+            //print("Correct");
         else 
-            print("KABOOM!!!");
+            IncorrectWireCut?.Invoke();
+            //print("KABOOM!!!");
     }
 
 
