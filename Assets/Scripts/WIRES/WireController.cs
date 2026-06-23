@@ -15,7 +15,7 @@ public class WireController : MonoBehaviour, IPointerDownHandler
     /// <summary>
     /// The type of wire sprite, used to match up with the correct cut wire sprite
     /// </summary>
-    private int _wireType = 0;
+    private int _spriteType = 0;
 
 
 
@@ -40,8 +40,12 @@ public class WireController : MonoBehaviour, IPointerDownHandler
 
     void RandomizeSprite()
     {
-        _wireType = Random.Range(0, WireSprites.Length);
-        _spriteRenderer.sprite = WireSprites[_wireType];
+        _spriteType = Random.Range(0, WireSprites.Length);
+        _spriteRenderer.sprite = WireSprites[_spriteType];
+
+        // The last sprite type cannot be in the fifth position
+        if (Position == 5 && _spriteType == WireSprites.Length - 1)
+            RandomizeSprite();
     }
 
     void SetColour(Color colour)
@@ -55,7 +59,7 @@ public class WireController : MonoBehaviour, IPointerDownHandler
     // Cut the wire 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _spriteRenderer.sprite = CutWireSprites[_wireType];
+        _spriteRenderer.sprite = CutWireSprites[_spriteType];
         WireCut?.Invoke(this);
     }
 }
