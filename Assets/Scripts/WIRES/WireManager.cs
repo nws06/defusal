@@ -1,8 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WireManager : MonoBehaviour
 {
-    public static Color[] Colours = new Color[] {Color.red, Color.blue, Color.yellow, Color.purple, Color.green, Color.black, Color.white};
+    public static readonly Dictionary<WireColour, Color> PossibleWireColours = new()
+    {
+        {WireColour.red, Color.red},
+        {WireColour.blue, Color.blue},
+        {WireColour.yellow, Color.yellow},
+        {WireColour.purple, Color.purple},
+        {WireColour.green, Color.green},
+        {WireColour.black, Color.black},
+        {WireColour.white, Color.white}
+    };
 
     private static readonly int _minNumberOfWires = 3;
     private static readonly int _maxNumberOfWires = 5;

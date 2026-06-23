@@ -49,8 +49,8 @@ public class WireController : MonoBehaviour, IPointerDownHandler
 
     void RandomizeColour()
     {
-        Colour = (WireColour) Random.Range(0, _numberOfColours);
-        _spriteRenderer.color = WireManager.Colours[(int) Colour];
+        Colour = (WireColour) Random.Range(0, WireManager.PossibleWireColours.Count);
+        _spriteRenderer.color = WireManager.PossibleWireColours[Colour];
     }
 
 
